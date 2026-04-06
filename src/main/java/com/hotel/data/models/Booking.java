@@ -14,7 +14,7 @@ public class Booking {
     private LocalDateTime checkInDate;
     private LocalDateTime checkOutDate;
     private String userId;
-    private String roomId;
+    private String roomNumber;
     private double totalAmount;
     private BookingStatus bookingStatus;
     private boolean paymentStatus;

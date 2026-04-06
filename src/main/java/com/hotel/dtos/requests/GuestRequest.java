@@ -1,10 +1,9 @@
 package com.hotel.dtos.requests;
 
-import com.hotel.data.models.UserRole;
 import lombok.Data;
 
 @Data
-public class UserRequest {
+public class GuestRequest {
     private String name;
     private String email;
     private String phoneNumber;

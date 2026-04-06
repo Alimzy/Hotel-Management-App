@@ -1,11 +1,13 @@
 package com.hotel.dtos.requests;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
-
+@Data
 public class BookingRequest {
-    private String roomId;
+    private String roomNumber;
+    private String userId;
     private LocalDateTime checkInDate;
-    private LocalDateTime checkOutDate;
+    private int numberOfNights;
 }

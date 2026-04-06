@@ -1,10 +1,9 @@
 package com.hotel.dtos.responses;
 
-import com.hotel.data.models.UserRole;
 import lombok.Data;
 
 @Data
-public class UserResponse {
+public class GuestResponse {
     private String id;
     private String name;
     private String email;
