@@ -37,6 +37,9 @@ public class Mapper {
         response.setRoomId(booking.getRoomNumber());
         response.setTotalAmount(booking.getTotalAmount());
         response.setPaymentStatus(booking.isPaymentStatus());
+        response.setNumberOfNights(booking.getNumberOfNights());
+        response.setId(booking.getId());
+
         return response;
     }
 }

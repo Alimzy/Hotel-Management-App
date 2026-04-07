@@ -2,9 +2,11 @@ package com.hotel.data.models;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document("admins")
 @Data
-public class Admin {
+public class User {
 
     @Id
     private String id;
@@ -12,4 +14,5 @@ public class Admin {
     private String email;
     private String phoneNumber;
     private String password;
+    private Role role;
 }

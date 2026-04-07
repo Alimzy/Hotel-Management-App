@@ -18,4 +18,6 @@ public class Booking {
     private double totalAmount;
     private BookingStatus bookingStatus;
     private boolean paymentStatus;
+    private int numberOfNights;
+
 }

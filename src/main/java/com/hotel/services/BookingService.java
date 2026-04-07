@@ -42,6 +42,7 @@ public class BookingService {
         booking.setTotalAmount(totalAmount);
         booking.setBookingStatus(BookingStatus.CONFIRMED);
         booking.setPaymentStatus(false);
+        booking.setNumberOfNights(request.getNumberOfNights());
 
 
         bookingRepository.save(booking);
