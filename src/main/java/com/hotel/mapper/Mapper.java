@@ -2,8 +2,10 @@ package com.hotel.mapper;
 
 import com.hotel.data.models.Booking;
 import com.hotel.data.models.Room;
+import com.hotel.data.models.User;
 import com.hotel.dtos.responses.BookingResponse;
 import com.hotel.dtos.responses.RoomResponse;
+import com.hotel.dtos.responses.UserResponse;
 
 public class Mapper {
     public static RoomResponse map(Room room) {
@@ -41,5 +43,16 @@ public class Mapper {
         response.setId(booking.getId());
 
         return response;
+    }
+
+    public static UserResponse userMap(User user){
+        UserResponse response = new UserResponse();
+        response.setEmail(user.getEmail());
+        response.setName(user.getName());
+        response.setPassword(user.getPassword());
+        response.setPhoneNumber(user.getPhoneNumber());
+
+        return response;
+
     }
 }
