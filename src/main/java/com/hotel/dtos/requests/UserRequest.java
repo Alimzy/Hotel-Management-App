@@ -7,5 +7,8 @@ import lombok.Data;
 @Data
 public class UserRequest {
     private String name;
-    @Email(messa
+    @Email(message = "Invalid email format")
+    private String email;
+    private String phoneNumber;
+    private String password;
 }
