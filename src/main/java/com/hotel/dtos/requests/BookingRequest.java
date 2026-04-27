@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Data
 public class BookingRequest {
     private String roomNumber;
-    private String userId;
+    private String userEmail;
     private LocalDateTime checkInDate;
     private int numberOfNights;
 }

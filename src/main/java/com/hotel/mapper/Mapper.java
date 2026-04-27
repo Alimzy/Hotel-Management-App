@@ -1,9 +1,11 @@
 package com.hotel.mapper;
 
 import com.hotel.data.models.Booking;
+import com.hotel.data.models.Payment;
 import com.hotel.data.models.Room;
 import com.hotel.data.models.User;
 import com.hotel.dtos.responses.BookingResponse;
+import com.hotel.dtos.responses.PaymentResponse;
 import com.hotel.dtos.responses.RoomResponse;
 import com.hotel.dtos.responses.UserResponse;
 
@@ -22,11 +24,12 @@ public class Mapper {
         response.setRoomNumber(room.getRoomNumber());
         response.setCheckInDate(booking.getCheckInDate());
         response.setCheckOutDate(booking.getCheckOutDate());
-        response.setUserId(booking.getUserId());
+        response.setUserEmail(booking.getUserEmail());
         response.setRoomId(booking.getRoomNumber());
         response.setNumberOfNights(numberOfNights);
         response.setTotalAmount(booking.getTotalAmount());
         response.setPaymentStatus(booking.isPaymentStatus());
+        response.setId(booking.getId());
         return response;
     }
 
@@ -35,7 +38,7 @@ public class Mapper {
         response.setRoomNumber(booking.getRoomNumber());
         response.setCheckInDate(booking.getCheckInDate());
         response.setCheckOutDate(booking.getCheckOutDate());
-        response.setUserId(booking.getUserId());
+        response.setUserEmail(booking.getUserEmail());
         response.setRoomId(booking.getRoomNumber());
         response.setTotalAmount(booking.getTotalAmount());
         response.setPaymentStatus(booking.isPaymentStatus());
@@ -49,10 +52,21 @@ public class Mapper {
         UserResponse response = new UserResponse();
         response.setEmail(user.getEmail());
         response.setName(user.getName());
-        response.setPassword(user.getPassword());
         response.setPhoneNumber(user.getPhoneNumber());
+        response.setRole(user.getRole());
 
         return response;
 
+    }
+
+    public static PaymentResponse map(Payment payment){
+        PaymentResponse response = new PaymentResponse();
+        response.setId(payment.getId());
+        response.setDatePaid(payment.getDatePaid());
+        response.setAmountPaid(payment.getAmountPaid());
+        response.setBookingId(payment.getBookingId());
+        response.setSuccessful(payment.isSuccessful());
+
+        return response;
     }
 }

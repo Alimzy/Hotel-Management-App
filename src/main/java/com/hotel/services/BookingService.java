@@ -3,8 +3,10 @@ package com.hotel.services;
 import com.hotel.data.models.Booking;
 import com.hotel.data.models.BookingStatus;
 import com.hotel.data.models.Room;
+import com.hotel.data.models.User;
 import com.hotel.data.repositories.BookingRepository;
 import com.hotel.data.repositories.RoomRepository;
+import com.hotel.data.repositories.UserRepository;
 import com.hotel.dtos.requests.BookingRequest;
 import com.hotel.dtos.responses.BookingResponse;
 import com.hotel.dtos.responses.RoomResponse;
@@ -23,7 +25,13 @@ public class BookingService {
     @Autowired
     RoomRepository roomRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     public BookingResponse createBooking(BookingRequest request){
+        User user = userRepository.findByEmail(request.getUserEmail())
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
         Room room = roomRepository.findByRoomNumber(request.getRoomNumber())
                 .orElseThrow(() -> new RoomNotFoundException("Room not found"));
 
@@ -36,13 +44,14 @@ public class BookingService {
 
         Booking booking = new Booking();
         booking.setRoomNumber(room.getRoomNumber());
-        booking.setUserId(request.getUserId());
+        booking.setUserEmail(request.getUserEmail());
         booking.setCheckInDate(request.getCheckInDate());
         booking.setCheckOutDate(request.getCheckInDate().plusDays(request.getNumberOfNights()));
         booking.setTotalAmount(totalAmount);
         booking.setBookingStatus(BookingStatus.CONFIRMED);
         booking.setPaymentStatus(false);
         booking.setNumberOfNights(request.getNumberOfNights());
+
 
 
         bookingRepository.save(booking);
