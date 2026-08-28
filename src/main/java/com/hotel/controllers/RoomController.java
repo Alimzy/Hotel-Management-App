@@ -3,7 +3,9 @@ package com.hotel.controllers;
 import com.hotel.dtos.requests.RoomRequest;
 import com.hotel.dtos.responses.RoomResponse;
 import com.hotel.services.RoomService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +19,8 @@ public class RoomController {
 
 
     @PostMapping
-    public RoomResponse addRoom(@RequestBody RoomRequest request){
+    @ResponseStatus(HttpStatus.CREATED)
+    public RoomResponse addRoom(@Valid @RequestBody RoomRequest request){
         return roomService.addRoom(request);
     }
 
@@ -25,6 +28,11 @@ public class RoomController {
     public List<RoomResponse> getAllRooms(){
         return roomService.getAllRoom();
 
+    }
+
+    @GetMapping("/available")
+    public List<RoomResponse> getAvailableRoom() {
+        return roomService.getAvailableRoom();
     }
 
     @GetMapping("/{roomNumber}")
@@ -37,10 +45,7 @@ public class RoomController {
         return roomService.deleteRoom(roomNumber);
     }
 
-    @GetMapping("/available")
-    public List<RoomResponse> getAvailableRoom() {
-        return roomService.getAvailableRoom();
-    }
+
 }
 
 
