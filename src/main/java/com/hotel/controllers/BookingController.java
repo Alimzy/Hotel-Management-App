@@ -5,7 +5,9 @@ import com.hotel.dtos.requests.RoomRequest;
 import com.hotel.dtos.responses.BookingResponse;
 import com.hotel.dtos.responses.RoomResponse;
 import com.hotel.services.BookingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +19,8 @@ public class BookingController {
     BookingService bookingService;
 
     @PostMapping
-    public BookingResponse createBooking(@RequestBody BookingRequest request){
+    @ResponseStatus(HttpStatus.CREATED)
+    public BookingResponse createBooking(@Valid @RequestBody BookingRequest request){
         return bookingService.createBooking(request);
     }
 
