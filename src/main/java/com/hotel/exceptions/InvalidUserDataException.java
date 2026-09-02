@@ -1,0 +1,7 @@
+package com.hotel.exceptions;
+
+public class InvalidUserDataException extends RuntimeException {
+    public InvalidUserDataException(String message) {
+        super(message);
+    }
+}

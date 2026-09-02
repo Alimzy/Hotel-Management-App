@@ -7,4 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface BookingRepository extends MongoRepository<Booking, String> {
 
     boolean existsByRoomNumberAndBookingStatus(String roomNumber, BookingStatus bookingStatus);
+
+    boolean existsByUserEmailAndBookingStatus(String email, BookingStatus bookingStatus);
 }
