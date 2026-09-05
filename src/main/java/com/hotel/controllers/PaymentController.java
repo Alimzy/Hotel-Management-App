@@ -2,6 +2,7 @@ package com.hotel.controllers;
 
 import com.hotel.data.models.Payment;
 import com.hotel.dtos.responses.PaymentResponse;
+import com.hotel.exceptions.InvalidPaymentDataException;
 import com.hotel.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,19 @@ public class PaymentController {
     }
 
     @GetMapping("/all")
-    public List<PaymentResponse> getAllPayments() {
-        return paymentService.getAllPayments();
+    public List<PaymentResponse> getAllPayments(@RequestHeader("Authorization") String token) {
+        return paymentService.getAllPayments(extractToken(token));
     }
 
     @GetMapping("/{bookingId}")
     public List<PaymentResponse> getPaymentsByBookingId(@PathVariable String bookingId) {
         return paymentService.getPaymentsByBookingId(bookingId);
+    }
+
+    private String extractToken(String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new InvalidPaymentDataException("Missing or malformed Authorization header");
+        }
+        return authHeader.substring(7);
     }
 }
