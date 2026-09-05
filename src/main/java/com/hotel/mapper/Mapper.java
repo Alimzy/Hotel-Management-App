@@ -4,10 +4,7 @@ import com.hotel.data.models.Booking;
 import com.hotel.data.models.Payment;
 import com.hotel.data.models.Room;
 import com.hotel.data.models.User;
-import com.hotel.dtos.responses.BookingResponse;
-import com.hotel.dtos.responses.PaymentResponse;
-import com.hotel.dtos.responses.RoomResponse;
-import com.hotel.dtos.responses.UserResponse;
+import com.hotel.dtos.responses.*;
 
 public class Mapper {
     public static RoomResponse map(Room room) {
@@ -67,6 +64,18 @@ public class Mapper {
         response.setBookingId(payment.getBookingId());
         response.setSuccessful(payment.isSuccessful());
 
+        return response;
+    }
+
+    public static NotificationResponse map(com.hotel.data.models.Notification notification){
+        NotificationResponse response = new NotificationResponse();
+        response.setId(notification.getId());
+        response.setBookingId(notification.getBookingId());
+        response.setUserEmail(notification.getUserEmail());
+        response.setMessage(notification.getMessage());
+       response.setType(notification.getType().toString());
+        response.setSentAt(notification.getSentAt());
+        
         return response;
     }
 }

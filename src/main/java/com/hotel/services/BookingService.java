@@ -28,6 +28,8 @@ public class BookingService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    private NotificationService notificationService;
 
     public BookingResponse createBooking(BookingRequest request){
 

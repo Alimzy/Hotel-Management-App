@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @PutMapping("/{email}")
-    public UserResponse updateUser(@Valid @PathVariable String email,@RequestBody UserRequest request, @RequestHeader("Authorization") String token){
+    public UserResponse updateUser( @PathVariable String email,@RequestBody UserRequest request, @RequestHeader("Authorization") String token){
         return userService.updateUser(email,request,extractToken(token));
     }
 
